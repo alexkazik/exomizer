@@ -1,0 +1,64 @@
+name:                exomizer
+version:             1.0.0
+github:              "alexkazik/exomizer"
+author:              "ALeX Kazik"
+maintainer:          "alex@kazik.de"
+copyright:           "2018 ALeX Kazik"
+license:             OtherLicense
+license-file:        LICENSE
+category:            codec
+synopsis:            Compression and decompression in the exomizer format
+description: >-
+  This package provides a pure interface for compressing and
+  decompressing data represented as strict @ByteStrings@.
+
+
+  Only the @raw@, @mem@ and @level@ compressions are supported.
+
+
+  This library uses the @exomizer 2.0.10@.
+
+
+  @exomizer@ is created by Magnus Lind (magli143@gmail.com)
+  https://bitbucket.org/magli143/exomizer/wiki/Home
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+dependencies:
+- base >= 4.10.1.0 && < 5
+- bytestring
+
+library:
+  source-dirs: src
+  include-dirs: vendor/exomizer/src
+  exposed-modules:
+    - Exomizer
+    - Exomizer.Mem
+    - Exomizer.Raw
+  c-sources:
+    - vendor/exomizer/src/chunkpool.c
+    - vendor/exomizer/src/exo_helper.c
+    - vendor/exomizer/src/exo_util.c
+    - vendor/exomizer/src/exodec.c
+    - vendor/exomizer/src/getflag.c
+    - vendor/exomizer/src/log.c
+    - vendor/exomizer/src/match.c
+    - vendor/exomizer/src/membuf.c
+    - vendor/exomizer/src/optimal.c
+    - vendor/exomizer/src/output.c
+    - vendor/exomizer/src/progress.c
+    - vendor/exomizer/src/radix.c
+    - vendor/exomizer/src/search.c
+    - vendor/exomizer/src/vec.c
+
+build-tools:
+  - c2hs
+
+tested-with:
+  GHC == 8.2.2,
+  GHC == 8.4.3
+
+data-files:
+- vendor/**/*
